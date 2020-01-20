@@ -1,0 +1,21 @@
+{
+  "name": "imageprocess",
+  "version": "1.0.0",
+  "description": "project for images",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^13.1.8",
+    "abc": "^0.6.1",
+    "nan": "^2.14.0",
+    "native-node-utils": "^0.2.7",
+    "npmlog": "^4.1.2",
+    "nvm": "0.0.4",
+    "opencv-build": "^0.1.9",
+    "opencv4nodejs": "^5.5.0"
+  }
+}

@@ -1,0 +1,197 @@
+$ npm install -g node-gyp
+
+$ node-gyp <command> --python /path/to/executable/python
+
+$ npm config set python /path/to/executable/python
+
+
+sudo yum install libv4l
+sudo yum install libv4l-devel
+sudo yum install gtk3-devel
+sudo yum install  jasper
+sudo yum install  jasper-libs
+sudo yum install  jasper-devel
+sudo yum install libpng12
+sudo yum install libpng12-devel
+sudo yum install libpng
+sudo yum install libpng-devel
+
+sudo ln -s /usr/include/libpng15   /usr/include/libpng
+
+sudo yum -y install libpng*
+sudo yum install libtiff
+sudo yum install libtiff-devel
+
+
+sudo yum  install gstreamer-python
+sudo yum  install gstreamer-python-devel
+sudo yum  install gstreamer-devel
+sudo yum install gstreamer1-devel
+
+sudo yum install gstreamer1-plugins-base
+sudo yum install gstreamer1-plugins-base-devel
+
+
+sudo yum install gstreamer1-libav
+sudo yum install gstreamer1-vaapi-devel
+
+sudo yum install libavc1394
+sudo yum install libavc1394-devel
+
+sudo yum install zlib
+sudo yum install zlib-devel
+
+
+
+sudo yum install pygtkglext
+sudo yum install pygtkglext-devel
+sudo yum install gtkglext-devel
+sudo yum install gtkglext-libs
+
+*for ogre*
+http://www.metralabs-service.com/downloads/SCITOS/redhat/el7/x86_64/
+
+
+sudo yum  install epel-release
+rpm --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro
+rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
+
+yum repolist
+sudo yum install ffmpeg ffmpeg-devel
+sudo yum install ffmpeg-compat
+sudo yum install ffmpeg-compat-devel
+sudo yum install gstreamer-ffmpeg
+sudo yum install libmpeg2 libmpeg2-devel
+sudo yum install libmpeg3 libmpeg3-devel
+sudo yum install x264 x264-devel x264-libs
+sudo yum install xvidcore xvidcore-devel
+sudo yum install tbb tbb-devel
+
+sudo yum install libdc1394
+sudo yum install libdc1394-devel
+
+sudo yum install libv4l
+sudo yum install libv4l-devel
+sudo yum install v4l-utils
+sudo yum install v4l-utils-devel-tools
+sudo ln -s /usr/include/libv4l1-videodev.h   /usr/include/linux/videodev.h
+
+sudo yum install python3-devel
+sudo yum install python2-devel
+sudo yum install python27-python-libs
+
+sudo yum install  hdf5
+sudo yum install  hdf5-devel
+
+sudo yum install openblas
+sudo yum install openblas-devel
+sudo yum install atlas
+sudo yum install atlas-devel
+
+sudo yum install opencv
+sudo yum install opencv-core
+sudo yum install opencv-devel
+
+sudo yum install gflags
+sudo yum install gflags-devel
+
+sudo yum install glog
+sudo yum install glog-devel
+
+sudo yum install lapack
+sudo yum install lapack-devel
+
+sudo yum install eigen3-devel
+
+sudo yum install tesseract
+sudo yum install tesseract-devel
+
+yum install protobuf
+yum install protobuf-devel
+
+sudo pip install numpy
+sudo pip3 install numpy
+sudo pip install imutils
+sudo pip3 install imutils
+
+
+sudo yum install cmake
+sudo yum install cmake3
+sudo yum install cmake-gui
+sudo yum install cmake3-gui
+sudo yum install ccache
+sudo yum install ceres-solver
+sudo yum install ceres-solver-devel
+
+/*for c++11 support*/ centos
+sudo yum install devtoolset-8*
+
+yum install golang
+
+
+
+------------------------------------------------------------------
+scl enable devtoolset-8 bash
+------------------------------------------------------------------
+gcc --version
+
+
+  npm install -save nan
+  npm install -save native-node-utils
+  npm install -save npmlog
+  npm install -save @types/node
+
+npm install --save opencv-build
+
+npm install --save opencv4nodejs
+
+whereis python
+python: /usr/bin/python /usr/bin/python2.7 /usr/bin/python3.6 /usr/bin/python3.6m /usr/bin/python3.4m /usr/bin/python3.4 /usr/lib/python2.7 /usr/lib/python3.6 /usr/lib/python3.4 /usr/lib64/python2.7 /usr/lib64/python3.6 /usr/lib64/python3.4 /etc/python /usr/include/python2.7 /usr/include/python3.6m /usr/include/python3.4m /usr/share/man/man1/python.1.gz
+
+
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.6 2
+sudo update-alternatives --display python
+python --version
+sudo update-alternatives --config python
+yum repolist
+
+yum install -y zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel expat-devel
+
+sudo yum install libpng-devel libjpeg-turbo-devel jasper-devel openexr-devel libtiff-devel libwebp-devel libdc1394-devel libv4l-devel gstreamer-plugins-base-devel gtk2-devel tbb-devel eigen3-devel gstreamer1-libav gstreamer1-plugins-base-devel java-1.8.0-openjdk-devel.x86_64 python2-numpy.x86_64 ffmpeg-devel.x86_64 ffmpeg-libs.i686 ffmpeg.x86_64 libavdevice.i686 libpng-devel libjpeg-turbo-devel jasper-devel openexr-devel libtiff-devel libwebp-devel libdc1394-devel libv4l-devel gstreamer-plugins-base-devel gtk2-devel tbb-devel eigen3-devel gstreamer1-libav gstreamer1-plugins-base-devel gtk+extra-devel.x86_64 gtk+-devel.i686 cmake pkg-config libgtk libavcodec libavformat libswscale swig
+
+
+
+for mpeg 4 videos
+-------------------------------------------
+
+yum install libdvdcss gstreamer{,1}-plugins-ugly gstreamer-plugins-bad-nonfree gstreamer1-plugins-bad-freeworld libde265 x265
+
+yum install vlc smplayer
+
+-------------------------------------------
+
+
+sudo yum makecache fast
+
+
+yum install simplescreenrecorder
+yum install simplescreenrecorder-libs
+
+
+npm config set python /usr/bin/python3.6
+sudo npm config set python /usr/bin/python3.6
+
+pythonx.m vs pythonx
+
+pythonx.m was configured with specialized implementation for 
+allocating memory that's faster than the system malloc
+
+
+
+
+170660026677816
+
+
+
+ CRO-9565-BNMQ
