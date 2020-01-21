@@ -9,6 +9,8 @@ coverage
 coverage-report
 tmpdata
 data/dnn
+data/face
+data/text-models
 .idea/
 dist
 .DS_Store

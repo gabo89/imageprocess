@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
-const cv = require('../');
+const cv = require('opencv4nodejs');
 
-if (!cv.xmodules.face) {
+if (!cv.modules.face) {
   throw new Error('exiting: opencv4nodejs compiled without face module');
 }
 

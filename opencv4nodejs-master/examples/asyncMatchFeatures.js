@@ -1,4 +1,4 @@
-const cv = require('../');
+const cv = require('opencv4nodejs');
 
 const detectAndComputeAsync = (det, img) =>
   det.detectAsync(img)

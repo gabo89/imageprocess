@@ -1,8 +1,8 @@
-const cv = require("../");
+const cv = require("opencv4nodejs");
 const fs = require("fs");
 const path = require("path");
 
-if (!cv.xmodules.face) {
+if (!cv.modules.face) {
   throw new Error("exiting: opencv4nodejs compiled without face module");
 }
 
@@ -23,16 +23,17 @@ const classifier = new cv.CascadeClassifier(cv.HAAR_FRONTALFACE_ALT2);
 const facemark = new cv.FacemarkLBF();
 facemark.loadModel(modelFile);
 
-// give the facemark object it's face detection callback
-facemark.setFaceDetector(frame => {
-  const { objects } = classifier.detectMultiScale(frame, 1.12);
-  return objects;
-});
-
 // retrieve faces using the facemark face detector callback
 const image = cv.imread("../data/got.jpg");
 const gray = image.bgrToGray();
-const faces = facemark.getFaces(gray);
+
+var faceClassifierOpts = {
+    minSize: new cv.Size(30, 30),
+    scaleFactor: 1.127,
+    minNeighbors: 1,
+}
+
+const faces = classifier.detectMultiScale(gray, faceClassifierOpts).objects
 
 // use the detected faces to detect the landmarks
 const faceLandmarks = facemark.fit(gray, faces);

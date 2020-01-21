@@ -1,10 +1,9 @@
-import {CV_32F, imread, Size} from '../';
+const cv = require('opencv4nodejs');
 
-// Ported from https://docs.opencv.org/2.4/doc/tutorials/gpu/gpu-basics-similarity/gpu-basics-similarity.html
 function getStructureSimilarity(i1, i2) {
     const C1 = 6.5025, C2 = 58.5225;
     /***************************** INITS **********************************/
-    const d = CV_32F;
+    const d = cv.CV_32F;
 
     const I1 = i1.convertTo(d);    // cannot calculate on one byte large values
     const I2 = i2.convertTo(d);
@@ -15,20 +14,20 @@ function getStructureSimilarity(i1, i2) {
 
     /*************************** END INITS **********************************/
 
-    const mu1 = I1.gaussianBlur(new Size(11, 11), 1.5);
-    const mu2 = I2.gaussianBlur(new Size(11, 11), 1.5);
+    const mu1 = I1.gaussianBlur(new cv.Size(11, 11), 1.5);
+    const mu2 = I2.gaussianBlur(new cv.Size(11, 11), 1.5);
 
     const mu1_2   = mu1.hMul(mu1);
     const mu2_2   = mu2.hMul(mu2);
     const mu1_mu2 = mu1.hMul(mu2);
 
-    let sigma1_2 = I1_2.gaussianBlur(new Size(11, 11), 1.5);
+    let sigma1_2 = I1_2.gaussianBlur(new cv.Size(11, 11), 1.5);
     sigma1_2 = sigma1_2.sub(mu1_2);
 
-    let sigma2_2 = I2_2.gaussianBlur(new Size(11, 11), 1.5);
+    let sigma2_2 = I2_2.gaussianBlur(new cv.Size(11, 11), 1.5);
     sigma2_2 = sigma2_2.sub(mu2_2);
 
-    let sigma12 = I1_I2.gaussianBlur(new Size(11, 11), 1.5);
+    let sigma12 = I1_I2.gaussianBlur(new cv.Size(11, 11), 1.5);
     sigma12 = sigma12.sub(mu1_mu2);
 
     ///////////////////////////////// FORMULA ////////////////////////////////
@@ -46,8 +45,8 @@ function getStructureSimilarity(i1, i2) {
     return [y, x, w].reduce((a, b) => a + b) / 3;
 }
 
-const i1 = imread('../data/ssim-1.png');
-const i2 = imread('../data/ssim-2.png');
+const i1 = cv.imread('../data/ssim-1.png');
+const i2 = cv.imread('../data/ssim-2.png');
 
 const structureSimilarity = getStructureSimilarity(i1, i2);
 

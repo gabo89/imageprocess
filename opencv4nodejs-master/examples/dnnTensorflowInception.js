@@ -1,8 +1,8 @@
-const cv = require('../');
+const cv = require('opencv4nodejs');
 const fs = require('fs');
 const path = require('path');
 
-if (!cv.xmodules.dnn) {
+if (!cv.modules.dnn) {
   throw new Error('exiting: opencv4nodejs compiled without dnn module');
 }
 
@@ -73,7 +73,7 @@ const testData = [
     label: 'car'
   },
   {
-    image: '../data/lenna.png',
+    image: '../data/Lenna.png',
     label: 'lenna'
   }
 ];

@@ -3,7 +3,7 @@ const fs = require('fs');
 const { cv, drawBlueRect } = require('./utils');
 const { extractResults } = require('./dnn/ssdUtils');
 
-if (!cv.xmodules.dnn) {
+if (!cv.modules.dnn) {
   throw new Error('exiting: opencv4nodejs compiled without dnn module');
 }
 

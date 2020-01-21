@@ -7,7 +7,7 @@ const path = require("path");
 const classNames = require("./dnnTensorflowObjectDetectionClassNames");
 const { cv, runVideoDetection } = require("./utils");
 
-if (!cv.xmodules.dnn) {
+if (!cv.modules.dnn) {
   throw new Error("exiting: opencv4nodejs compiled without dnn module");
 }
 

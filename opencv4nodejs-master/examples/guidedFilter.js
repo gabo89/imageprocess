@@ -1,5 +1,5 @@
 const path = require('path');
-const cv = require('../');
+const cv = require('opencv4nodejs');
 
 const image = cv.imread(path.resolve(__dirname, '../data/Lenna.png'));
 

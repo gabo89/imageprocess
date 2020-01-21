@@ -7,7 +7,7 @@ const path = require('path');
 const classNames = require('./dnnCocoClassNames');
 const { extractResults } = require('./dnn/ssdUtils');
 
-if (!cv.xmodules.dnn) {
+if (!cv.modules.dnn) {
   throw new Error('exiting: opencv4nodejs compiled without dnn module');
 }
 
