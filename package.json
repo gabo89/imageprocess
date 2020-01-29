@@ -12,8 +12,11 @@
   "dependencies": {
     "@types/node": "^13.1.8",
     "abc": "^0.6.1",
+    "diff": "^4.0.2",
+    "handlebars": "^4.7.2",
     "jasmine": "^3.5.0",
     "jimp": "^0.9.3",
+    "js-yaml": "^3.13.1",
     "nan": "^2.14.0",
     "native-node-utils": "^0.2.7",
     "node-abi": "^2.13.0",
