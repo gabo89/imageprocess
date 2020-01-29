@@ -194,4 +194,16 @@ allocating memory that's faster than the system malloc
 
 
 
+
  CRO-9565-BNMQ
+
+
+
+
+font loadFontData
+
+font-family:'Flexo-light'
+font-family:'Flexo-Demi'
+font-family:'Flexo'
+
+

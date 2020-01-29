@@ -4,18 +4,30 @@
   "description": "project for images",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "nodemon": "nodemon robotscreen.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@types/node": "^13.1.8",
     "abc": "^0.6.1",
+    "jasmine": "^3.5.0",
+    "jimp": "^0.9.3",
     "nan": "^2.14.0",
     "native-node-utils": "^0.2.7",
+    "node-abi": "^2.13.0",
     "npmlog": "^4.1.2",
     "nvm": "0.0.4",
     "opencv-build": "^0.1.9",
-    "opencv4nodejs": "^5.5.0"
+    "opencv4nodejs": "^5.5.0",
+    "prebuild": "^10.0.0",
+    "prebuild-install": "^5.3.3",
+    "robotjs": "^0.6.0",
+    "run-script-os": "^1.0.7",
+    "targetpractice": "0.0.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }

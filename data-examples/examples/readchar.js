@@ -12,7 +12,8 @@ const beamSearchModel = path.resolve(modelsPath, 'OCRBeamSearch_CNN_model_data.x
 const vocabulary = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
 const hmmClassifier = cv.loadOCRHMMClassifierCNN(beamSearchModel);
-const charImages = ['scenetext_char01.jpg', 'scenetext_char02.jpg']
+
+const charImages = ['parte1.jpg', 'parte2.jpg', 'parte3.jpg', 'parte4.jpg', 'parte5.jpg']
   .map(file => path.resolve(dataPath, file))
   .map(cv.imread);
 
