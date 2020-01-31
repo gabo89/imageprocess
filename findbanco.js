@@ -1,36 +1,51 @@
 
-
-
 var cv = require('opencv4nodejs');
+var robot = require("robotjs");
+
+robot.setMouseDelay(2);
+
+var array1=[];
+var array2=[];
+
+const find = async () => {
+// Load images
+const original = await cv.imreadAsync(`/opt/project/imageprocess/capture.png`);
+
+console.log(original)
+
+const busqueda = await cv.imreadAsync(`/opt/project/imageprocess/recorte.png`);
+
+console.log(busqueda)
+
+// Match template (the brightest locations indicate the highest match)
+const matched = original.matchTemplate(busqueda, 5);
 
 
-function find() {
-  // Load images
-  let original =  cv.imread(`/opt/project/imageprocess/capture.png`);
-  let busqueda =  cv.imread(`/opt/project/imageprocess/recorte.png`);
+console.log(matched)
 
-  // Match template (the brightest locations indicate the highest match)
-  const matched = original.matchTemplate(busqueda, 5);
 
-  // Use minMaxLoc to locate the highest value (or lower, depending of the type of matching method)
-  const minMax = matched.minMaxLoc();
-  const { maxLoc: { x, y } } = minMax;
+const minMax = matched.minMaxLoc();
 
-  // Draw bounding rectangle
+console.log(minMax)
+const figx= minMax.maxLoc.x
+const figy= minMax.maxLoc.y
+
   original.drawRectangle(
-    new cv.Rect(x, y, busqueda.cols, busqueda.rows),
+    new cv.Rect(figx, figy, busqueda.cols, busqueda.rows),
     new cv.Vec(0, 255, 0),
     2,
     cv.LINE_8
   );
 
+
+
   // Open result in new window
   cv.imshow('resultado', original);
-  cv.imshow('buscando a ', busqueda);
   cv.waitKey();
 };
 
 find()
+
 
 
 

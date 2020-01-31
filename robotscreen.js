@@ -2,9 +2,13 @@
 
 var Jimp = require('jimp');
 var robot = require("robotjs");
+const fs = require('fs')
 
-function captureimage({x,y,w,h})
-{
+function wait() {
+    console.log('complete');
+}
+
+const captureimage = async ({x,y,w,h})  =>  {
 	const pic=robot.screen.capture(x,y,w,h)
 	const width=pic.byteWidth/pic.bytesPerPixel
 	const height=pic.height
@@ -23,16 +27,27 @@ function captureimage({x,y,w,h})
 	}
 	})
 
-	return image
+
+try {
+  fs.unlinkSync('/opt/project/imageprocess/capture.png')
+} catch(err) {
 }
+
+const size = (await image.getBufferAsync("image/jpeg")).byteLength;
+const result = await image.writeAsync('/opt/project/imageprocess/capture.png')
+
+setTimeout(wait, size / 200); 
+}
+
 
 let x=0
 let y=0
 let w= robot.getScreenSize().width
 let h= robot.getScreenSize().height
 
-const result=captureimage(x,y,w,h).write('/opt/project/imageprocess/capture.png')
-console.log(result); 
+captureimage({x,y,w,h})
+
+
 
 
 

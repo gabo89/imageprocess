@@ -1,4 +1,13 @@
 
+/*
+
+en este ejemplo movemos el mouse en forma senoidal
+
+gracias por ver el video adios
+
+*/
+
+
  var robot = require("robotjs");
   
   robot.setMouseDelay(2);
