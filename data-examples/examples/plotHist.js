@@ -36,6 +36,9 @@ cv.waitKey();
 
 const grayImg = img.bgrToGray();
 const grayHist = cv.calcHist(grayImg, getHistAxis(0));
+
+console.log(grayHist)
+
 const grayHistPlot = new cv.Mat(300, 600, cv.CV_8UC3, [255, 255, 255]);
 cv.plot1DHist(grayHist, grayHistPlot, new cv.Vec(0, 0, 0));
 
