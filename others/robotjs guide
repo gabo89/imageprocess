@@ -1,0 +1,36 @@
+
+
+sudo yum install libXtst
+
+sudo yum install libXtst-devel
+
+$ npm install -g node-gyp
+
+$ node-gyp <command> --python /path/to/executable/python
+
+$ npm config set python /path/to/executable/python
+
+  npm install -save nan
+  npm install -save is-png
+  npm install -save read-chunk
+  npm install -save node-abi 
+  npm install -save jasmine
+  npm install -save prebuild
+  npm install -save jasmine
+  npm install -save run-script-os
+  npm install -save targetpractice
+
+ npm install -save prebuild-install
+
+npm install -save robotjs
+npm install -save nodemon
+npm install -save jimp
+
+Agrega nodemon como devDependency:
+
+
+npm i -D nodemon
+
+
+
+
