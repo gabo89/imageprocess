@@ -1,58 +1,55 @@
 const {cv,drawRect} = require('./utils');
 const fs = require('fs');
 const path = require('path');
-const classNames = require('./tipos_mascara');
 const { extractResults } = require('./ssdUtils');
 
 if (!cv.modules.dnn) {
-  throw new Error('exiting: opencv4nodejs compiled without dnn module');
+  throw new Error('exiting: opencv compiled without dnn module');
 }
 
-// replace with path where you unzipped inception model
-const pathfile = '/opt/project/imageprocess/face_detector';
+
+const pathfile = '/opt/project/imageprocess/face_detector/face-detection-from-body';
+const pathfile1 = '/opt/project/imageprocess/face_detector/mask-detection-from-face';
 
 const prototxt = path.resolve(pathfile, 'deploy.prototxt');
 const modelFile = path.resolve(pathfile, 'res10_300x300_ssd_iter_140000.caffemodel');
 
+const prototxt1 = path.resolve(pathfile1, 'deploy.prototxt');
+const modelFile1 = path.resolve(pathfile1, 'res10_224x224_ssd_iter_15000.caffemodel');
+
 if (!fs.existsSync(prototxt) || !fs.existsSync(modelFile)) {
-  console.log('could not find  model');
-  throw new Error('exiting: could not find  model');
+  console.log('could not find  model for face');
+  throw new Error('exiting: could not find face model');
 }
 
-const modelFile1 = path.resolve(pathfile, "mask_detector.model");
-
-if (!fs.existsSync(modelFile)) {
-  console.log("could not find  model");
-  throw new Error("exiting: could not find model");
+if (!fs.existsSync(prototxt1) || !fs.existsSync(modelFile1)) {
+  console.log('could not find  model formask');
+  throw new Error('exiting: could not find mask model');
 }
 
 
 
-
-
-// initialize  model from prototxt and modelFile
-const net = cv.readNetFromCaffe(prototxt, modelFile);
+const netface_from_body = cv.readNetFromCaffe(prototxt, modelFile);
+const netmask_from_face = cv.readNetFromCaffe(prototxt1, modelFile1);
 
 function classifyImg(img) {
-  //model works with 300 x 300 images
   const imgResized = img.resize(300, 300);
 
-  // network accepts blobs as input
+
   const inputBlob = cv.blobFromImage(imgResized);
-  net.setInput(inputBlob);
+  netface_from_body.setInput(inputBlob);
 
-  // forward pass input through entire network, will return
-  // classification result as 1x1xNxM Mat
-  let outputBlob = net.forward();
-
- console.log(outputBlob);
+  let outputBlob = netface_from_body.forward();
+  console.log("face detection")
+  console.log(outputBlob);
   // extract NxM Mat
   outputBlob = outputBlob.flattenFloat(outputBlob.sizes[2], outputBlob.sizes[3]);
 
- console.log(outputBlob);
+  const outputsalida1 = outputBlob.getDataAsArray();
+   console.log(outputsalida1);
 
   return extractResults(outputBlob, img)
-    .map(r => Object.assign({}, r, { className: classNames[r.classLabel] }));
+    .map(r => Object.assign({}, r));
 }
 
 const makeDrawClassDetections = predictions => (drawImg, className, getColor, thickness = 2) => {
@@ -63,17 +60,53 @@ const makeDrawClassDetections = predictions => (drawImg, className, getColor, th
 };
 
 const run_sample = () => {
-  const img = cv.imread('/opt/project/imageprocess/face_detector/0-with-mask.jpg');
+  const img = cv.imread('/opt/project/imageprocess/image-for-test/0-with-mask.jpg');
   const minConfidence = 0.2;
 
   const predictions = classifyImg(img).filter(res => res.confidence > minConfidence);
   const drawClassDetections = makeDrawClassDetections(predictions);
 
-   console.log(predictions);
+   //console.log(predictions);
+   //console.log(img);
+   console.log("quantify of person : "+predictions.length);
    const redcolor = () => new cv.Vec( 255, 0, 0);
 
-   //get all images that are related to 'tipo 2' type
-   drawClassDetections(img, 'tipo 2', redcolor);
+
+   for (var i=0;i<predictions.length;i++)
+   {
+   console.log("rectangle for image"+(i+1)+":");
+   const x= Math.round(predictions[i].rect.x);
+   const y= Math.round(predictions[i].rect.y);
+   const height= Math.round(predictions[i].rect.height);
+   const width= Math.round(predictions[i].rect.width);
+   console.log("x="+x+",y="+y+",width="+width+",height="+height);
+
+   const imgbuff=img.getRegion(new cv.Rect(x, y, width, height));
+   const imgResized_formask = imgbuff.resize(224, 224);
+
+   const inputBlob_formask = cv.blobFromImage(imgResized_formask);
+ 
+   console.log(inputBlob_formask);
+
+   netmask_from_face.setInput(inputBlob_formask);
+
+   var outputBlob1 = netmask_from_face.forward();
+   console.log("mask detection");
+   console.log(outputBlob1);
+   const outputsalida = outputBlob1.getDataAsArray();
+   console.log(outputsalida);
+
+   //cv.imshowWait('subimg '+(i+1), imgResized_formask);
+   
+   img.drawRectangle(predictions[i].rect,new cv.Vec( 255, 0, 0));
+   
+
+   }
+
+
+   
+
+
    cv.imshowWait('img', img);
    cv.waitKey();
 };
