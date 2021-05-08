@@ -13,7 +13,7 @@
     "@types/node": "^13.1.8",
     "abc": "^0.6.1",
     "diff": "^4.0.2",
-    "handlebars": "^4.7.2",
+    "handlebars": "^4.7.7",
     "is-png": "^2.0.0",
     "jasmine": "^3.5.0",
     "jimp": "^0.9.3",
